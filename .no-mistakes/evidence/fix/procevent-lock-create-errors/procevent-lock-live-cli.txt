@@ -1,0 +1,20 @@
+Live process-event CLI lock scenarios
+Product: /home/escu/.no-mistakes/worktrees/cf4099bd14a4/01M3EY8SFAFWZTRYFT7AX5WVJM/bin/fm-procevent.sh
+
+SCENARIO: registration fails promptly when lock-owner storage cannot be created
+Command: timeout 4 env FM_HOME=<isolated> FM_STATE_OVERRIDE=<isolated>/state FM_PROCEVENT_CLAIM_ROOT=<read-only> bin/fm-procevent.sh register when create-error -- /bin/true
+Exit: 1
+Output: error: cannot lock the source
+Observed: command returned promptly; no lock or .steal path was created.
+
+SCENARIO: registration waits through ordinary live lock contention
+Command: bin/fm-procevent.sh register when wait-source -- /bin/true (another process owns source lock for 0.6s)
+Exit: 0
+Output: registered: wait-source (when)
+Observed: the real CLI waited, then persisted the registration after lock release.
+
+SCENARIO: registration reclaims a stale source lock
+Fixture: source lock symlink points to an owner record with dead PID 2147483647; FM_LOCK_STALE_AFTER=0
+Exit: 0
+Output: registered: stale-source (when)
+Observed: the CLI reclaimed the dead owner, registered the source, and removed stale lock artifacts.

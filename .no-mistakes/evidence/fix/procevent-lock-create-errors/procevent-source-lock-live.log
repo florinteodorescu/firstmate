@@ -1,0 +1,4 @@
+scenario=stale-recovery-owner-storage-failure cli_exit=1 output=error: cannot lock the source
+lock_creation_sequence=primary-owner-attempt-1;steal-owner-directory-created;primary-owner-attempt-2;forced-primary-recreation-failure
+primary_lock=absent steal_mutex=absent
+scenario=live-steal-contention-with-missing-primary cli_exit=0 output=registered: live-contention (quota) waiter_retried=yes registration=persisted steal_mutex=absent
