@@ -33,13 +33,16 @@ The live Herdr guard is `FM_HERDR_SUBMIT_CONFIRM_LIVE=1 ../../../tests/fm-herdr-
 
 ## Primary integration
 
-The primary integration was verified on 2026-07-08 with OpenCode 1.17.6.
+The primary integration was verified on 2026-07-08 with OpenCode 1.17.6, and the plugins were ported to the OpenCode v2 plugin contract on 2026-09-27 against 2.0.18.
+Each primary plugin exports both a v1 named function and a v2 `export default { id, setup(ctx) }`, so one file serves the v1 hook API (`client.session.promptAsync`, `tool.execute.before`, the returned `event` hook) and the v2 API (`ctx.session.prompt`, `ctx.tool.hook("execute.before")`, `ctx.event.subscribe()`).
+On v2 the loader requires the default export; a module with only a v1 named export fails to load with "Plugin must export a default definition with an id and an effect or setup function", so the default export must stay in place.
 `.opencode/plugins/fm-primary-turnend-guard.js` listens for `session.idle`.
-Throwing from `session.idle` does not block `opencode run`, so the primary adapter treats the event as passive and uses `client.session.promptAsync` to force one follow-up turn when `../../../bin/fm-turnend-guard.sh` returns 2.
+Throwing from `session.idle` does not block `opencode run`, so the primary adapter treats the event as passive and forces one follow-up turn when `../../../bin/fm-turnend-guard.sh` returns 2, through `client.session.promptAsync` on v1 and `ctx.session.prompt` on v2.
 The follow-up was verified in the interactive TUI.
 In a home with `config/supervision-host` the watch-arm plugin spawns the supervision host instead of `../../../bin/fm-watch-arm.sh`, with Claude's print mode as its headless engine; [`supervision-host.md`](../../../../../docs/supervision-host.md) owns the host.
 `opencode run` can exit before displaying a queued follow-up, so the adapter steps aside in headless mode.
 On native Windows, the operational-input adapter runs its Bash helper through `bash`; macOS and Linux invoke it directly.
 
-The companion `.opencode/plugins/fm-primary-watch-arm.js` owns normal TUI watcher supervision, wakes it with `client.session.promptAsync`, and coordinates with the guard before a blind-turn follow-up.
-The PreToolUse-equivalent watcher-arm seatbelt blocks by throwing from `tool.execute.before`.
+The companion `.opencode/plugins/fm-primary-watch-arm.js` owns normal TUI watcher supervision, wakes it through the same prompt call, and coordinates with the guard before a blind-turn follow-up.
+The PreToolUse-equivalent watcher-arm seatbelt blocks by throwing, from `tool.execute.before` on v1 and from `ctx.tool.hook("execute.before", ...)` on v2.
+The v2 shell tool is named `shell` in `event.tool`, where the v1 API named it `bash`; the seatbelt plugins accept both names.

@@ -4537,33 +4537,48 @@ const busyEvent = (state, event) =>
   });
 export const FmBusyState = async () => {
   let activeSession = null;
-  return {
-    event: async ({ event }) => {
-      if (event.type === "session.status") {
-        const sessionID = event.properties.sessionID;
-        const statusType = event.properties.status && event.properties.status.type;
-        if (statusType === "busy" || statusType === "retry") {
-          if (activeSession === null) activeSession = sessionID;
-          if (sessionID === activeSession) await busyEvent("busy", "session-" + statusType);
-          return;
-        }
-        if (statusType === "idle" && sessionID === activeSession) {
-          activeSession = null;
-          await busyEvent("idle", "session-status-idle");
-        }
+  const handle = async (event) => {
+    if (event.type === "session.status") {
+      const sessionID = event.properties.sessionID;
+      const statusType = event.properties.status && event.properties.status.type;
+      if (statusType === "busy" || statusType === "retry") {
+        if (activeSession === null) activeSession = sessionID;
+        if (sessionID === activeSession) await busyEvent("busy", "session-" + statusType);
         return;
       }
-      if (event.type === "session.idle") {
-        if (event.properties.sessionID === activeSession) {
-          activeSession = null;
-          await busyEvent("idle", "session-idle");
-        }
-        await new Promise((resolve) => {
-          execFile("touch", ["$TURNEND"], () => resolve());
-        });
+      if (statusType === "idle" && sessionID === activeSession) {
+        activeSession = null;
+        await busyEvent("idle", "session-status-idle");
       }
-    },
+      return;
+    }
+    if (event.type === "session.idle") {
+      if (event.properties.sessionID === activeSession) {
+        activeSession = null;
+        await busyEvent("idle", "session-idle");
+      }
+      await new Promise((resolve) => {
+        execFile("touch", ["$TURNEND"], () => resolve());
+      });
+    }
   };
+  return { event: async ({ event }) => handle(event) };
+};
+
+// OpenCode v2 loads a default export with an id and a setup function; the
+// v1 hook object above is reused by subscribing to the v2 event stream.
+export default {
+  id: "fm-busy-state",
+  async setup(ctx) {
+    const hooks = await FmBusyState();
+    const controller = new AbortController();
+    void (async () => {
+      for await (const event of ctx.event.subscribe({ signal: controller.signal })) {
+        await hooks.event({ event });
+      }
+    })().catch(() => {});
+    return () => controller.abort();
+  },
 };
 EOF
     exclude_path '.opencode/plugins/fm-busy-state.js'
