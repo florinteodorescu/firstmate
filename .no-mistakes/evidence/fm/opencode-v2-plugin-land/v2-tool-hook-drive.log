@@ -1,0 +1,6 @@
+fm-primary-cd-check.js {"tool":"shell","input":{"command":"echo BLOCKME"}} -> BLOCKED: blocked by stub owner
+fm-primary-cd-check.js {"tool":"shell","input":{"command":"echo fine"}} -> allowed
+fm-primary-cd-check.js {"tool":"read","input":{"command":"BLOCKME"}} -> allowed
+fm-primary-pretool-check.js {"tool":"shell","input":{"command":"echo BLOCKME"}} -> BLOCKED: blocked by stub owner
+fm-primary-pretool-check.js {"tool":"shell","input":{"command":"echo fine"}} -> allowed
+fm-primary-pretool-check.js {"tool":"read","input":{"command":"BLOCKME"}} -> allowed

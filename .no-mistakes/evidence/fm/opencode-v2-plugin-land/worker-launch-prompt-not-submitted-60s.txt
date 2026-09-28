@@ -1,0 +1,45 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                              ▄
+                                                             █▀▀█ █▀▀█ █▀▀█ █▀▀▄ █▀▀▀ █▀▀█ █▀▀█ █▀▀█
+                                                             █  █ █  █ █▀▀▀ █  █ █    █  █ █  █ █▀▀▀
+                                                             ▀▀▀▀ █▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀
+
+
+                                           ┃
+                                           ┃  Use your shell tool to run: touch /tmp/fm-lab.iUfCCh/ext/submitted.txt
+                                           ┃  then reply DONE.
+                                           ┃
+                                           ┃  Build auto · DeepSeek V4.1 Flash OpenCode Go
+                                           ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+                                           /tmp/fm-lab.iUfCCh/w-sub:master           shift+tab agents  ctrl+p commands
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                        2.0.18
+
+ ✓ Server  ○ UI  Theme  Tools  Experiments                                             Time to first draw: 1509.92ms

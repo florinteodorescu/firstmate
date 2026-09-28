@@ -1,0 +1,16 @@
+   Exact OK response request     +
+  ┃                                                                                                                                         Exact OK response request
+  ┃  Reply with exactly the word OK and nothing else. Do not run any tools.
+  ┃                                                                                                                                         Context
+                                                                                                                                            24,403 tokens
+     OK                                                                                                                                     2% used
+                                                                                                                                            $0.00 spent
+     Build · DeepSeek V4.1 Flash · 5.9s · 0.6 tok/s
+     + Tokens: 1 step · latest: 24,019 new · 384 cached · 24,403 total
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash OpenCode Go
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  ~/.no-mistakes/worktrees/cf4099bd14a4/01M3KWT3397E6ZJ93MRBQJKHR4                                   24.4K (2%) · $0.00  ctrl+p commands    …/cf4099bd…/01M3KWT3397E6ZJ93MRBQJKHR4
+ ✓ Server  ○ UI  Theme  Tools  Experiments                                                       Time to first draw: 1515.47ms

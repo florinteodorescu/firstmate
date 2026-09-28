@@ -1,0 +1,27 @@
+integration.updated {}
+model.updated {}
+provider.updated {}
+vcs.branch.updated {"branch":"master"}
+agent.updated {}
+command.updated {}
+skill.updated {}
+websearch.updated {}
+reference.updated {}
+plugin.updated {}
+session.created {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","projectID":"global","location":{"directory":"/tmp/fm-lab.iUfCCh/probe"},"subpath":"","slug":"clever-garden","agen
+session.inbox.enqueued {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","inboxID":"msg_0e7eeadbb001Phad886HpFQTXC","item":{"type":"user","payload":{"text":"Reply with exactly OK","files"
+session.execution.started {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6"}
+session.instructions.updated {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","delta":{"core/environment":"f05843ecc5871eb9d6d63e90aa47ee8bddeba9da0bd8420cb3b60ac902f99b31","core/date":"bf08b8
+session.inbox.delivered {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","inboxID":"msg_0e7eeadbb001Phad886HpFQTXC"}
+session.usage.updated {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","cost":0.000054300000000000005,"tokens":{"input":518,"output":5,"reasoning":0,"cache":{"read":0,"write":0}}}
+session.renamed {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","title":"OK"}
+session.step.started {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","assistantMessageID":"msg_0e7eeae39001fVDMdBdaDXyb74","agent":"build","model":{"id":"deepseek-v4.1-flash","provide
+session.text.started {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","assistantMessageID":"msg_0e7eeae39001fVDMdBdaDXyb74","ordinal":0}
+session.text.delta {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","assistantMessageID":"msg_0e7eeae39001fVDMdBdaDXyb74","ordinal":0,"delta":"OK"}
+session.text.ended {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","assistantMessageID":"msg_0e7eeae39001fVDMdBdaDXyb74","ordinal":0,"text":"OK"}
+session.step.streamed {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","assistantMessageID":"msg_0e7eeae39001fVDMdBdaDXyb74"}
+session.step.ended {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","assistantMessageID":"msg_0e7eeae39001fVDMdBdaDXyb74","finish":"stop","rawFinish":"stop","cost":0.001559202,"token
+session.usage.updated {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","cost":0.001613502,"tokens":{"input":10897,"output":7,"reasoning":0,"cache":{"read":384,"write":0}}}
+session.execution.succeeded {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6"}
+session.viewed {"sessionID":"ses_f18115248ffevqLnbgUBJ2eVC6","idle":1790597578325}
+location.shutdown {}

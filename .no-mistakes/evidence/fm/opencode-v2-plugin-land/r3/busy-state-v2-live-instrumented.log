@@ -1,0 +1,35 @@
+== generated plugin: /tmp/fm-live-busy.PzCozn/c/wt/.opencode/plugins/fm-busy-state.js
+total 8
+drwxr-xr-x 2 escu escu   80 Sep 28 15:23 .
+drwxr-xr-x 3 escu escu   60 Sep 28 15:23 ..
+-rw-r--r-- 1 escu escu 3549 Sep 28 15:23 fm-busy-state.js
+-rw-r--r-- 1 escu escu  447 Sep 28 15:23 zz-probe.js
+== busy classify after spawn: busy fm-spawn
+== running real opencode opencode v2.0.18 run --auto in the worktree
+opencode exit=0
+== stdout:
+OK
+== plugin load lines:
+timestamp=2026-09-28T12:23:29.869Z level=INFO run=c93bce15 msg="loading plugin" id=/tmp/fm-live-busy.PzCozn/c/wt/.opencode/plugins/fm-busy-state.js entrypoint=file:///tmp/fm-live-busy.PzCozn/c/wt/.opencode/plugins/fm-busy-state.js http.span=140 role=server
+timestamp=2026-09-28T12:23:29.870Z level=INFO run=c93bce15 message="watcher subscribe" path=/tmp/fm-live-busy.PzCozn/c/wt/.opencode/plugins/fm-busy-state.js type=file ignores=0 http.span=141 role=server
+timestamp=2026-09-28T12:23:29.870Z level=INFO run=c93bce15 message="watcher started" path=/tmp/fm-live-busy.PzCozn/c/wt/.opencode/plugins/fm-busy-state.js type=file backend=node ignores=0 http.span=141 role=server
+timestamp=2026-09-28T12:23:35.544Z level=INFO run=c93bce15 message="watcher stopped" path=/tmp/fm-live-busy.PzCozn/c/wt/.opencode/plugins/fm-busy-state.js type=file http.span=5815 role=server
+== session status/idle/execution events seen:
+== busy classify after turn: busy opencode-plugin
+== turn-ended marker: PRESENT
+-rw------- 1 escu escu   26 Sep 28 15:23 busy-live-1.busy-gen
+-rw------- 1 escu escu  106 Sep 28 15:23 busy-live-1.busy-state
+dr-x------ 2 escu escu  340 Sep 28 15:23 busy-live-1.git-hooks
+-rw-r--r-- 1 escu escu  346 Sep 28 15:23 busy-live-1.meta
+-rw-r--r-- 1 escu escu    0 Sep 28 15:23 busy-live-1.turn-ended
+== all event types published during the turn:
+      1 event.type=agent.updated
+      1 event.type=command.updated
+      1 event.type=model.updated
+      1 event.type=provider.updated
+== busy record:
+v1 gen=g1790598208.3157554.18716 seq=2 state=busy source=opencode-plugin event=session-busy ts=1790598210
+
+== probe (session lifecycle events seen by a sibling plugin):
+{"t":"session.execution.started","d":{"sessionID":"ses_f18079ec6ffev6omtfGd0lNLXq"}}
+{"t":"session.execution.succeeded","d":{"sessionID":"ses_f18079ec6ffev6omtfGd0lNLXq"}}

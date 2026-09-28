@@ -1,0 +1,3 @@
+v1-shape: event={"type":"session.created","properties":{"sessionID":"ses_v1","info":{"id":"ses_v1"}}} -> prompts=[{"sessionID":"ses_v1","text":"NUDGE-TEXT"}]
+v2.0.18-shape: event={"id":"evt_1","created":1,"type":"session.created","data":{"sessionID":"ses_v2","agent":"build"}} -> prompts=[]
+RESULT: v1-shaped nudges=1, v2.0.18-shaped nudges=0

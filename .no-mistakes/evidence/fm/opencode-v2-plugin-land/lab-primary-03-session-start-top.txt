@@ -1,0 +1,50 @@
+   Session start command request +
+
+  ┃                                                                                                                                         Session start command request
+  ┃  ⁣TFIRSTMATE_OP: v1 session-start: Run `bin/fm-session-start.sh` now, exactly once, before executing any other instructions.
+  ┃                                                                                                                                         Context
+                                                                                                                                            27,046 tokens
+     + Thought · 421ms                                                                                                                      3% used
+                                                                                                                                            $0.00 spent
+  ┃
+  ┃  $ bin/fm-session-start.sh
+  ┃
+  ┃  (135 earlier lines)
+  ┃  NEXT STEP
+  ┃  ================================================================================
+  ┃  Follow the supervision operating instructions block above for harness 'opencode'.
+  ┃  This script never starts supervision itself.
+  ┃
+  ┃  The digest above is complete for this session start. The READ-ONCE CONTRACT
+  ┃  section near the top of it governs what may still be read from disk.
+  ┃
+
+  ┃
+  ┃  Use your shell tool to run exactly this command, unmodified: cd bin && pwd   -- then report the exact tool result verbatim,
+  ┃  including any error text. Do not retry or run anything else.
+  ┃
+
+     + Thought · 2.5s
+
+  ┃
+  ┃  $ cd bin && pwd
+  ┃
+  ┃  {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny"},"systemMessage":"[persistent-cd] a persistent top-
+  ┃  level directory change in the primary firstmate checkout is blocked; it would move the shell out of the home so a later firstmate-
+  ┃  owned command runs inside a project clone. Reach the target without moving the shell - use git -C <dir> or an absolute path on the
+  ┃  command itself - or scope the cd to a subshell like (cd <dir> && ...)."}
+  ┃
+
+     + Thought · 2.3s
+
+     Captain, here is the exact tool result from running cd bin && pwd unmodified — it was refused by the shell's safety check, and per
+     your instruction I did not retry or run anything else:
+                                                                                                                        Jump to latest ↓
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash OpenCode Go
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  /tmp/fm-lab.iUfCCh/fm                                                                              27.0K (3%) · $0.00  ctrl+p commands    /tmp/fm-lab.iUfCCh/fm
+
+ ✓ Server  ○ UI  Theme  Tools  Experiments                                                       Time to first draw: 1524.62ms

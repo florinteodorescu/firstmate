@@ -1,0 +1,37 @@
+== busy classify after spawn: busy fm-spawn
+== turn-ended marker: PRESENT (after ~4s)
+== busy record: v1 gen=g1790598258.3159437.32221 seq=3 state=idle source=opencode-plugin event=session-idle ts=1790598274
+== busy classify after turn (TUI still running): idle opencode-plugin
+== TUI pane:
+ • Exact OK response request     +
+  ┃                                                                                                                                                             Exact OK response request
+  ┃  Reply with exactly the word OK and nothing else.
+  ┃                                                                                                                                                             Context
+                                                                                                                                                                10,783 tokens
+     OK                                                                                                                                                         1% used
+                                                                                                                                                                $0.00 spent
+     Build · DeepSeek V4.1 Flash · 3.1s · 1.2 tok/s
+     + Tokens: 1 step · latest: 10,399 new · 384 cached · 10,783 total
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash OpenCode Go
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  /tmp/fm-live-busy-tui.Wwn1ki/c/wt:wt-live                                                                              10.8K (1%) · $0.00  ctrl+p commands    /…/fm-live-busy-tui.Wwn1…/c/wt:wt-live
+ ✓ Server  ○ UI  Theme  Tools  Experiments                                                                 Time to first draw: 1518.35ms
+== mid second turn record: v1 gen=g1790598258.3159437.32221 seq=4 state=busy source=opencode-plugin event=session-busy ts=1790598279
+== second turn-ended marker: PRESENT
+== busy record after second turn: v1 gen=g1790598258.3159437.32221 seq=5 state=idle source=opencode-plugin event=session-idle ts=1790598280
+== busy classify: idle opencode-plugin
+  ┃  Reply with exactly the word AGAIN and nothing else.
+  ┃
+     AGAIN
+     Build · DeepSeek V4.1 Flash · 1.6s · 2.0 tok/s
+     + Tokens: 1 step · latest: 49 new · 10,752 cached · 10,801 total
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash OpenCode Go
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  /tmp/fm-live-busy-tui.Wwn1ki/c/wt:wt-live                                                                              10.8K (1%) · $0.00  ctrl+p commands    /…/fm-live-busy-tui.Wwn1…/c/wt:wt-live
+ ✓ Server  ○ UI  Theme  Tools  Experiments                                                                 Time to first draw: 1518.35ms

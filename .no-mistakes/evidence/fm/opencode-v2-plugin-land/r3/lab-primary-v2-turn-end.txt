@@ -1,0 +1,33 @@
+   Session-start instruction req +
+  ┃                                                                                                                                         Session-start instruction request
+  ┃  ⁣RFIRSTMATE_OP: v1 session-start: Run `bin/fm-session-start.sh` now, exactly once, before executing any other instructions.
+  ┃                                                                                                                                         Context
+                                                                                                                                            26,556 tokens
+     I'll run the session-start script as instructed.                                                                                       3% used
+                                                                                                                                            $0.00 spent
+  ┃
+  ┃  $ bin/fm-session-start.sh
+  ┃
+  ┃  (146 earlier lines)
+  ┃  NEXT STEP
+  ┃  ================================================================================
+  ┃  Follow the supervision operating instructions block above for harness 'opencode'.
+  ┃  This script never starts supervision itself.
+  ┃
+  ┃  The digest above is complete for this session start. The READ-ONCE CONTRACT
+  ┃  section near the top of it governs what may still be read from disk.
+  ┃
+  ┃
+  ┃  Reply with exactly the word OK and nothing else. Do not run any tools.
+  ┃
+     + Thought · 1.4s
+     OK
+     Build · DeepSeek V4.1 Flash · 8.9s · 46.0 tok/s
+     + Tokens: 2 steps · latest: 2,492 new · 24,064 cached · 26,556 total
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash OpenCode Go
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  /tmp/fm-lab.HRyJxg/fm                                                                              26.6K (3%) · $0.00  ctrl+p commands    /tmp/fm-lab.HRyJxg/fm
+ ✓ Server  ○ UI  Theme  Tools  Experiments                                                       Time to first draw: 1532.36ms

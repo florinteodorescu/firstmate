@@ -1,0 +1,27 @@
+== generated plugin: /tmp/fm-live-busy.jFJ0hF/c/wt/.opencode/plugins/fm-busy-state.js
+total 4
+drwxr-xr-x 2 escu escu   60 Sep 28 15:06 .
+drwxr-xr-x 3 escu escu   60 Sep 28 15:06 ..
+-rw-r--r-- 1 escu escu 2893 Sep 28 15:06 fm-busy-state.js
+== busy classify after spawn: busy fm-spawn
+== running real opencode opencode v2.0.18 run --auto in the worktree
+opencode exit=0
+== stdout:
+OK
+== plugin load lines:
+timestamp=2026-09-28T12:06:07.465Z level=INFO run=87e5f9e2 msg="loading plugin" id=/tmp/fm-live-busy.jFJ0hF/c/wt/.opencode/plugins/fm-busy-state.js entrypoint=file:///tmp/fm-live-busy.jFJ0hF/c/wt/.opencode/plugins/fm-busy-state.js http.span=139 role=server
+timestamp=2026-09-28T12:06:07.466Z level=INFO run=87e5f9e2 message="watcher subscribe" path=/tmp/fm-live-busy.jFJ0hF/c/wt/.opencode/plugins/fm-busy-state.js type=file ignores=0 http.span=140 role=server
+timestamp=2026-09-28T12:06:07.466Z level=INFO run=87e5f9e2 message="watcher started" path=/tmp/fm-live-busy.jFJ0hF/c/wt/.opencode/plugins/fm-busy-state.js type=file backend=node ignores=0 http.span=140 role=server
+timestamp=2026-09-28T12:06:13.064Z level=INFO run=87e5f9e2 message="watcher stopped" path=/tmp/fm-live-busy.jFJ0hF/c/wt/.opencode/plugins/fm-busy-state.js type=file http.span=5738 role=server
+== session status/idle/execution events seen:
+== busy classify after turn: busy fm-spawn
+== turn-ended marker: MISSING
+-rw------- 1 escu escu   26 Sep 28 15:06 busy-live-1.busy-gen
+-rw------- 1 escu escu   99 Sep 28 15:06 busy-live-1.busy-state
+dr-x------ 2 escu escu  340 Sep 28 15:06 busy-live-1.git-hooks
+-rw-r--r-- 1 escu escu  346 Sep 28 15:06 busy-live-1.meta
+== all event types published during the turn:
+      1 event.type=agent.updated
+      1 event.type=command.updated
+      1 event.type=model.updated
+      1 event.type=provider.updated
