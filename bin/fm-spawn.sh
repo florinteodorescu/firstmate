@@ -4571,6 +4571,19 @@ export const FmBusyState = async () => {
 
 // OpenCode v2 loads a default export with an id and a setup function; the
 // v1 hook object above is reused by subscribing to the v2 event stream.
+// v2 events carry their payload under data; the v1 hooks read properties.
+// v2 publishes neither session.status nor session.idle: a turn starts with
+// session.execution.started (mapped to a busy status) and ends with a
+// terminal session.execution.* event (mapped to session.idle).
+const V2_TURN_END = ["session.execution.succeeded", "session.execution.failed", "session.execution.interrupted"];
+const v1Event = (event) => {
+  const properties = event.data || {};
+  if (event.type === "session.execution.started") {
+    return { type: "session.status", properties: { sessionID: properties.sessionID, status: { type: "busy" } } };
+  }
+  if (V2_TURN_END.includes(event.type)) return { type: "session.idle", properties };
+  return { type: event.type, properties };
+};
 export default {
   id: "fm-busy-state",
   async setup(ctx) {
@@ -4578,9 +4591,8 @@ export default {
     const controller = new AbortController();
     void (async () => {
       for await (const event of ctx.event.subscribe({ signal: controller.signal })) {
-        // v2 events carry their payload under data; the v1 hooks read properties.
         try {
-          await hooks.event({ event: { type: event.type, properties: event.data } });
+          await hooks.event({ event: v1Event(event) });
         } catch {}
       }
     })().catch(() => {});

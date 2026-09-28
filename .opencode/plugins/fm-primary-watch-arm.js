@@ -553,6 +553,16 @@ function clientFromCtx(ctx) {
   };
 }
 
+// v2 events carry their payload under `data`; the v1 hooks read `properties`.
+// v2 publishes no `session.idle`: a turn ends with a terminal
+// `session.execution.*` event, which is mapped onto the v1 idle event.
+const V2_TURN_END = ["session.execution.succeeded", "session.execution.failed", "session.execution.interrupted"];
+function v1Event(event) {
+  const properties = event.data ?? {};
+  if (V2_TURN_END.includes(event.type)) return { type: "session.idle", properties };
+  return { type: event.type, properties };
+}
+
 export default {
   id: "fm-primary-watch-arm",
   async setup(ctx) {
@@ -563,9 +573,8 @@ export default {
     const controller = new AbortController();
     void (async () => {
       for await (const event of ctx.event.subscribe({ signal: controller.signal })) {
-        // v2 events carry their payload under `data`; the v1 hooks read `properties`.
         try {
-          await hooks.event({ event: { type: event.type, properties: event.data } });
+          await hooks.event({ event: v1Event(event) });
         } catch {}
       }
     })().catch(() => {});
