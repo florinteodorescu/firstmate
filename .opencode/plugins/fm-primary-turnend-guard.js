@@ -119,8 +119,9 @@ export default {
     const controller = new AbortController();
     void (async () => {
       for await (const event of ctx.event.subscribe({ signal: controller.signal })) {
+        // v2 events carry their payload under `data`; the v1 hooks read `properties`.
         try {
-          await hooks.event({ event });
+          await hooks.event({ event: { type: event.type, properties: event.data } });
         } catch {}
       }
     })().catch(() => {});

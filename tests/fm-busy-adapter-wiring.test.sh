@@ -180,7 +180,11 @@ drive_oc_plugin_v2() {
   PLUGIN_PATH="$plugin" node --input-type=module - "$@" 2>&1 <<'EOF'
 import { pathToFileURL } from "node:url";
 const mod = await import(pathToFileURL(process.env.PLUGIN_PATH).href);
-const events = process.argv.slice(2).map((arg) => JSON.parse(arg));
+// Re-wrap each event in the v2.0.18 envelope: payload under `data`.
+const events = process.argv.slice(2).map((arg, i) => {
+  const { type, properties } = JSON.parse(arg);
+  return { id: `evt_${i}`, created: 0, type, data: properties };
+});
 const ctx = {
   event: {
     subscribe: async function* () {

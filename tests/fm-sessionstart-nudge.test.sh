@@ -209,9 +209,12 @@ const ctx = {
   },
   event: {
     subscribe: async function* () {
+      // v2.0.18 event envelope: payload under `data`, not `properties`.
       yield {
+        id: "evt_1",
+        created: 0,
         type: "session.created",
-        properties: { sessionID: "session-nudge-v2", info: { id: "session-nudge-v2" } },
+        data: { sessionID: "session-nudge-v2", agent: "build" },
       };
     },
   },
