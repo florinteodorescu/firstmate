@@ -4542,8 +4542,9 @@ export const FmBusyState = async () => {
   let activeSession = null;
   const handle = async (event) => {
     if (event.type === "session.status") {
-      const sessionID = event.properties.sessionID;
-      const statusType = event.properties.status && event.properties.status.type;
+      const props = event.properties || {};
+      const sessionID = props.sessionID;
+      const statusType = props.status && props.status.type;
       if (statusType === "busy" || statusType === "retry") {
         if (activeSession === null) activeSession = sessionID;
         if (sessionID === activeSession) await busyEvent("busy", "session-" + statusType);
@@ -4556,7 +4557,7 @@ export const FmBusyState = async () => {
       return;
     }
     if (event.type === "session.idle") {
-      if (event.properties.sessionID === activeSession) {
+      if ((event.properties || {}).sessionID === activeSession) {
         activeSession = null;
         await busyEvent("idle", "session-idle");
       }
@@ -4577,7 +4578,9 @@ export default {
     const controller = new AbortController();
     void (async () => {
       for await (const event of ctx.event.subscribe({ signal: controller.signal })) {
-        await hooks.event({ event });
+        try {
+          await hooks.event({ event });
+        } catch {}
       }
     })().catch(() => {});
     return () => controller.abort();

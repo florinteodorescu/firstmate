@@ -119,7 +119,9 @@ export default {
     const controller = new AbortController();
     void (async () => {
       for await (const event of ctx.event.subscribe({ signal: controller.signal })) {
-        await hooks.event({ event });
+        try {
+          await hooks.event({ event });
+        } catch {}
       }
     })().catch(() => {});
     return () => controller.abort();
