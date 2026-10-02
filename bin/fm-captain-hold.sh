@@ -1969,7 +1969,9 @@ EOF
 # Still an open captain call? Exit 0 yes, 1 no, 2 cannot tell (see the header).
 # A row this home does not carry is 3 when the caller requests the distinction,
 # and so is a home with no backlog file at all, because a backlog that does not
-# exist holds nothing. Every read failure over a record that DOES exist is a 2,
+# exist holds nothing, and so is a non-markdown home the installed tasks-axi
+# reports as an unsupported backend, because that adapter can neither record nor
+# read a hold there. Every read failure over a record that DOES exist is a 2,
 # printed to stderr, because a mechanical closer must never read "cannot tell"
 # as permission to close.
 command_open() {  # <task-id> [--identity] [--distinguish-absent]
@@ -1998,16 +2000,6 @@ command_open() {  # <task-id> [--identity] [--distinguish-absent]
     || { printf 'fm-captain-hold: %s\n' "$FM_BACKLOG_TRANSITION_ERROR" >&2; exit 2; }
   if ! backend=$(fm_tasks_axi_backend_resolve "$root"); then
     exit 2
-  fi
-  if [ "$backend" != markdown ]; then
-    # A captain hold is a markdown-backend feature. On any other backend this home
-    # records no captain calls at all, so a task is provably NOT held - the same
-    # answer the missing-backlog-file branch below gives for a markdown home.
-    # Reporting "cannot tell" here instead wedged every caller that gates on this
-    # answer: teardown, local merge, PR merge, and the bearings board all refused,
-    # so on such a home nothing could ever be cleaned up or merged. A backend that
-    # cannot express a hold cannot be hiding one.
-    return 1
   fi
   if [ "$backend" = markdown ]; then
     file=$(fm_backlog_file "$data") \
@@ -2040,12 +2032,15 @@ command_open() {  # <task-id> [--identity] [--distinguish-absent]
     fi
     return 1
   fi
-  if [ "$FM_BACKLOG_ROW_RESULT" = not_found ]; then
-    [ "$distinguish_absent" = 0 ] || return 3
-    return 1
+  if [ "$FM_BACKLOG_ROW_RESULT" != not_found ]; then
+    if [ "$backend" = markdown ] \
+      || [ "${FM_BACKLOG_ROW_ERROR#*Unsupported backend}" = "$FM_BACKLOG_ROW_ERROR" ]; then
+      printf 'fm-captain-hold: %s\n' "$FM_BACKLOG_ROW_ERROR" >&2
+      exit 2
+    fi
   fi
-  printf 'fm-captain-hold: %s\n' "$FM_BACKLOG_ROW_ERROR" >&2
-  exit 2
+  [ "$distinguish_absent" = 0 ] || return 3
+  return 1
 }
 
 case "${1:-}" in
