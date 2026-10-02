@@ -1999,6 +1999,16 @@ command_open() {  # <task-id> [--identity] [--distinguish-absent]
   if ! backend=$(fm_tasks_axi_backend_resolve "$root"); then
     exit 2
   fi
+  if [ "$backend" != markdown ]; then
+    # A captain hold is a markdown-backend feature. On any other backend this home
+    # records no captain calls at all, so a task is provably NOT held - the same
+    # answer the missing-backlog-file branch below gives for a markdown home.
+    # Reporting "cannot tell" here instead wedged every caller that gates on this
+    # answer: teardown, local merge, PR merge, and the bearings board all refused,
+    # so on such a home nothing could ever be cleaned up or merged. A backend that
+    # cannot express a hold cannot be hiding one.
+    return 1
+  fi
   if [ "$backend" = markdown ]; then
     file=$(fm_backlog_file "$data") \
       || { printf 'fm-captain-hold: %s\n' "$FM_BACKLOG_TRANSITION_ERROR" >&2; exit 2; }
