@@ -3887,6 +3887,41 @@ spawn_send_key() { # <target> <key>
   esac
 }
 
+# Claude receives the launch brief as a positional argument on the launch command,
+# and a brief of more than one line is not always submitted by that argument alone:
+# Claude leaves it sitting in the composer waiting for its own Enter. Nothing in the
+# launch path noticed, so the worker started, never received a single instruction,
+# and idled until a human looked at the pane - which reads exactly like a slow
+# worker and is why a Factory reviewer could sit "busy" forever. Kimi and Rovo
+# already confirm their composer emptied after delivery; Claude did not, so this
+# polls the same shared classifier and presses Enter while the brief is still
+# pending. `unknown` is tolerated rather than failed, matching every other
+# readiness check: an unclassifiable pane is not proof of a stuck launch.
+# The state and Enter steps are named parameters so this decision is unit-testable
+# without a live pane.
+claude_default_composer_state() { fm_backend_composer_state "$BACKEND" "$T"; }
+claude_default_submit_enter() { spawn_send_key "$T" Enter; }
+claude_confirm_brief_submitted() { # <retries> <sleep> [state-fn] [enter-fn]
+  local retries=$1 sleep_s=$2 i=0 state
+  local state_fn=${3:-claude_default_composer_state}
+  local enter_fn=${4:-claude_default_submit_enter}
+  while [ "$i" -lt "$retries" ]; do
+    sleep "$sleep_s"
+    state=$("$state_fn" 2>/dev/null)
+    case "$state" in
+    pending | pending-unproven)
+      "$enter_fn"
+      i=$((i + 1))
+      ;;
+    *)
+      printf '%s' "$state"
+      return 0
+      ;;
+    esac
+  done
+  printf 'pending'
+}
+
 # Enter the exact copy recorded for this task immediately before trust setup and
 # launch. Herdr restores a pane's shell cwd from its durable tab layout, so a
 # treehouse subshell's foreground cwd is not enough to keep a later pane restart
@@ -5369,6 +5404,21 @@ if [ "${HERDR_PROJECTED:-0}" -eq 1 ]; then
   spawn_herdr_presentation_order_lock_release
 fi
 spawn_send_key "$T" Enter
+if [ "$HARNESS" = claude ]; then
+  # A positional launch brief is not always submitted by the launch command alone.
+  # Confirm the composer actually emptied, pressing Enter while the brief is still
+  # pending, and refuse the launch rather than leave a worker that will never read
+  # its instructions.
+  CLAUDE_SUBMIT_RETRIES=${FM_CLAUDE_SUBMIT_RETRIES:-3}
+  CLAUDE_SUBMIT_SLEEP=${FM_CLAUDE_SUBMIT_SLEEP:-${FM_POLL_INTERVAL:-0.5}}
+  CLAUDE_SUBMIT_VERDICT=$(claude_confirm_brief_submitted "$CLAUDE_SUBMIT_RETRIES" "$CLAUDE_SUBMIT_SLEEP")
+  case "$CLAUDE_SUBMIT_VERDICT" in
+  pending | pending-unproven)
+    echo "error: claude started but its composer still holds the launch brief after $CLAUDE_SUBMIT_RETRIES submit attempts in window $T; the worker would never read its instructions - inspect window $T, then relaunch" >&2
+    exit 1
+    ;;
+  esac
+fi
 if [ "$HARNESS" = kimi ]; then
   if ! kimi_wait_for_ready; then
     kimi_spawn_fail "$KIMI_READY_FAILURE_DETAIL"
