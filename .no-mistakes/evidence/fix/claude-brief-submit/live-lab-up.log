@@ -1,0 +1,14 @@
+lab: /tmp/fmlab-brief (tear down with: bin/fm-live-lab.sh down /tmp/fmlab-brief)
+tree: e469861db017c073853a3666aef5f260d3cdb3a6 from /home/escu/.no-mistakes/worktrees/cf4099bd14a4/01M3Y0750M32FXYJS6JNPXVQK7
+spawned labc6c30395ce8f-worker harness=claude kind=ship mode=local-only yolo=on window=firstmate:fm-labc6c30395ce8f-worker worktree=/tmp/fmlab-brief/treehouse/.treehouse/notes-9d0805/1/notes
+gate: /tmp/fmlab-brief/home/data/labc6c30395ce8f-worker/gate (touch, then message the worker to resume)
+primary: claude --setting-sources project,local --model sonnet --effort medium --permission-mode auto
+ok primary: claude pid 2037526 in /tmp/fmlab-brief/home
+ok probe: the primary answered LABREADY-c6c30395ce8f
+ok trust: /tmp/fmlab-brief/home is trusted in the Claude store
+ok mirror: verified writer, check passed, captain=1 main=1
+ok host: supervision host pid 2054721
+ok watcher: live watcher with a fresh beacon
+ok worker: labc6c30395ce8f-worker parked on /tmp/fmlab-brief/home/data/labc6c30395ce8f-worker/gate
+ok treehouse: ~/.treehouse unchanged
+ready: /tmp/fmlab-brief

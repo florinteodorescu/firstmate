@@ -1,0 +1,5 @@
+ok - claude brief submission: waits through a slow boot, then presses Enter on the pending brief
+ok - claude brief submission: a lone empty read drawn before the brief fills keeps polling
+ok - claude brief submission: a brief that never submits fails the spawn, stamps it, and closes the pane
+ok - claude brief submission: an unclassifiable pane is tolerated, not failed
+ok - claude brief submission: a brief the launch already submitted needs no Enter
