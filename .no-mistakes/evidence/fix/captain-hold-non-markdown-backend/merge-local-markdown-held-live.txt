@@ -1,0 +1,8 @@
+# adversarial: markdown lab home where lab-m1 IS captain-held; target cbd25ac5
+$ fm-captain-hold.sh hold lab-m1 ...
+lab-m1
+-> exit 0
+$ fm-merge-local.sh lab-m1
+error: task lab-m1 is still held for the captain; release it before merging
+-> exit 1
+main now: 4bf2eeb init

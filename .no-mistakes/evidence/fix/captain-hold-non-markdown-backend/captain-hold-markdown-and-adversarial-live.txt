@@ -1,0 +1,21 @@
+## markdown home: place a real captain hold, then ask open
+$ hold lab-q1 --title ... --reason ...
+lab-q1
+-> exit 0
+$ open lab-q1
+-> exit 0
+$ open lab-q1 --distinguish-absent
+-> exit 0
+$ open other-task --distinguish-absent
+-> exit 3
+## adversarial: markdown backlog that exists but cannot be read must stay 'cannot tell'
+backlog file: data/backlog.md
+$ open lab-q1 (backlog chmod 000)
+fm-captain-hold: error: "EACCES: permission denied, open '/tmp/fm-lab.Y76DXN/data/backlog.md'"
+-> exit 2
+## adversarial: beads home - can the installed adapter even place a hold?
+$ hold lab-q2 --title ... --reason ...
+fm-captain-hold: could not create task lab-q2
+-> exit 1
+$ open lab-q2
+-> exit 1

@@ -1,0 +1,12 @@
+fm-captain-hold-backend exit 0
+fm-teardown-endpoint-safety exit 0
+fm-teardown exit 0
+fm-captain-hold-lifecycle exit 0
+== /tmp/fmt-fm-captain-hold-backend.log: 4 ok, 0 not ok
+== /tmp/fmt-fm-captain-hold-lifecycle.log: 61 ok, 0 not ok
+== /tmp/fmt-fm-teardown-endpoint-safety.log: 27 ok, 0 not ok
+== /tmp/fmt-fm-teardown.log: 103 ok, 0 not ok
+ok - captain-hold open: an unsupported non-markdown backend answers 'not held' (1, or 3 with --distinguish-absent)
+ok - captain-hold open: a beads-capable adapter still reports a captain hold
+ok - captain-hold open: a beads read failure still answers 'cannot tell'
+ok - captain-hold open: markdown-home answers are unchanged (1 absent, 3 absent+distinguish)

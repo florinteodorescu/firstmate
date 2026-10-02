@@ -1,0 +1,18 @@
+# beads-backed lab home, real tasks-axi 0.2.6; local-only task lab-m1 with a fast-forwardable branch
+backend = "beads"
+[beads]
+## base commit 65e2aa44: bin/fm-merge-local.sh lab-m1
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+fm-captain-hold: error: "Unsupported backend \"beads\" — P1 ships the markdown backend only"
+error: could not determine whether task lab-m1 is still held for the captain; refusing to merge
+-> exit 1   main now: 4bf2eeb init
+## target cbd25ac5: bin/fm-merge-local.sh lab-m1
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+merged fm/lab-m1 into local main (4bf2eeb -> 47a786b) in /tmp/fm-lab.Y76DXN/projects/demo
+-> exit 0   main now: 47a786b work

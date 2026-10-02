@@ -1,0 +1,17 @@
+# tasks-axi 0.2.6 (real, installed)  home: beads-backed lab FM_HOME
+## raw adapter answer on this home:
+error: "Unsupported backend \"beads\" — P1 ships the markdown backend only"
+## beads-backed home
+base    open some-task                        -> exit 2 | fm-captain-hold: error: "Unsupported backend \"beads\" — P1 ships the markdown backend only"
+target  open some-task                        -> exit 1 
+base    open some-task --distinguish-absent   -> exit 2 | fm-captain-hold: error: "Unsupported backend \"beads\" — P1 ships the markdown backend only"
+target  open some-task --distinguish-absent   -> exit 3 
+base    open some-task --identity             -> exit 2 | fm-captain-hold: error: "Unsupported backend \"beads\" — P1 ships the markdown backend only"
+target  open some-task --identity             -> exit 1 
+## adversarial: bad id still refused
+target  open bad/id                           -> exit 2 | fm-captain-hold: task id must be a non-empty privacy-safe slug: bad/id
+## markdown home, no backlog file
+base    open absent-task                      -> exit 1 
+target  open absent-task                      -> exit 1 
+base    open absent-task --distinguish-absent -> exit 3 
+target  open absent-task --distinguish-absent -> exit 3 
