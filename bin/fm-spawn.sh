@@ -3902,18 +3902,12 @@ spawn_send_key() { # <target> <key>
 # on two consecutive reads. Only when the window runs out without a verdict is
 # `unknown` tolerated rather than failed, matching every other readiness check:
 # an unclassifiable pane is not proof of a stuck launch.
-# The state and Enter steps are named parameters so this decision is unit-testable
-# without a live pane.
-claude_default_composer_state() { fm_backend_composer_state "$BACKEND" "$T" "$W"; }
-claude_default_submit_enter() { spawn_send_key "$T" Enter; }
-claude_confirm_brief_submitted() { # <polls> <enters> <sleep> [state-fn] [enter-fn]
+claude_confirm_brief_submitted() { # <polls> <enters> <sleep>
   local polls=$1 max_enters=$2 sleep_s=$3 i=0 enters=0 empties=0 state=unknown
-  local state_fn=${4:-claude_default_composer_state}
-  local enter_fn=${5:-claude_default_submit_enter}
   while [ "$i" -lt "$polls" ]; do
     sleep "$sleep_s"
     i=$((i + 1))
-    state=$("$state_fn" 2>/dev/null)
+    state=$(fm_backend_composer_state "$BACKEND" "$T" "$W" 2>/dev/null)
     case "$state" in
     pending | pending-unproven)
       empties=0
@@ -3921,7 +3915,7 @@ claude_confirm_brief_submitted() { # <polls> <enters> <sleep> [state-fn] [enter-
         printf '%s' "$state"
         return 0
       fi
-      "$enter_fn"
+      spawn_send_key "$T" Enter >/dev/null
       enters=$((enters + 1))
       ;;
     empty)
