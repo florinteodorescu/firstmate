@@ -172,7 +172,9 @@
 # could not be established, so a caller that must never close a live call can
 # treat "cannot tell" as its own case instead of as a no. With
 # `--distinguish-absent`, an absent local task returns 3 instead of 1; a home
-# with no backlog file counts as absent, because it records no captain calls.
+# with no backlog file counts as absent, because it records no captain calls,
+# and so does a non-markdown home the installed tasks-axi rejects as an
+# unsupported backend.
 # It prints nothing on these predicate results and mutates nothing, unless
 # `--identity` asks it to print this call's
 # LIFECYCLE identity, which it does on an exit 0 only. That identity - the
